@@ -1,0 +1,11 @@
+node_modules/
+main.js
+data.json
+.DS_Store
+*.cjs
+
+# Local agent docs
+CLAUDE.md
+AGENTS.md
+.claude/
+docs/superpowers/
