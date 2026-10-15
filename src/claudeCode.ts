@@ -172,7 +172,7 @@ export async function transcribeWithClaudeCode(
 		// The whole of both streams, untruncated, because the thrown message is
 		// capped and a Notice is not where you read 2 kB of CLI output.
 		console.error(
-			`[handwriting-transcribe] ${binary} exited ${code} on ${options.relativePath}\n` +
+			`[eink-scribe] ${binary} exited ${code} on ${options.relativePath}\n` +
 				`--- stderr ---\n${stderr}\n--- stdout ---\n${stdout}`,
 		);
 		throw new Error(describeSpawnFailure(code, stderr, stdout, binary));

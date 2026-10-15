@@ -20,9 +20,9 @@ import { syncSupernote } from "./sync";
 import { buildSource, buildSourceRef, isSupported, type Source } from "./sources";
 import {
 	DEFAULT_SETTINGS,
-	HandwritingSettingTab,
+	EinkScribeSettingTab,
 	IMPORT_FOLDER,
-	type HandwritingSettings,
+	type EinkScribeSettings,
 	type LastRun,
 } from "./settings";
 import { writeNotes, type WriteReport } from "./writer";
@@ -34,12 +34,12 @@ import { writeNotes, type WriteReport } from "./writer";
  */
 const MAX_CONCURRENT_TRANSCRIPTIONS = 3;
 
-export default class HandwritingPlugin extends Plugin {
-	settings: HandwritingSettings = DEFAULT_SETTINGS;
+export default class EinkScribePlugin extends Plugin {
+	settings: EinkScribeSettings = DEFAULT_SETTINGS;
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
-		this.addSettingTab(new HandwritingSettingTab(this.app, this));
+		this.addSettingTab(new EinkScribeSettingTab(this.app, this));
 
 		this.addCommand({
 			id: "transcribe-active-file",
@@ -272,7 +272,7 @@ export default class HandwritingPlugin extends Plugin {
 				));
 			pending = null;
 			console.debug(
-				`[handwriting-transcribe] ${file.name}: ${result.notes.length} notes, ` +
+				`[eink-scribe] ${file.name}: ${result.notes.length} notes, ` +
 					`${result.cacheReadTokens} cached input tokens` +
 					(result.costUsd !== undefined
 						? `, $${result.costUsd.toFixed(4)} equivalent`
@@ -384,7 +384,7 @@ export default class HandwritingPlugin extends Plugin {
 
 		for (const failure of report.failed) {
 			console.error(
-				`[handwriting-transcribe] could not write "${failure.filename}": ${failure.reason}`,
+				`[eink-scribe] could not write "${failure.filename}": ${failure.reason}`,
 			);
 		}
 	}

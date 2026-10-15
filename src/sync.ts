@@ -14,7 +14,7 @@ import {
 	resolveSupernoteTool,
 	supernoteToolInstalled,
 } from "./supernote";
-import type HandwritingPlugin from "./main";
+import type EinkScribePlugin from "./main";
 
 /**
  * Renders every new or changed .note in the mapped Supernote folders into a
@@ -24,7 +24,7 @@ import type HandwritingPlugin from "./main";
  * is newer than that PDF. Nothing else is recorded: the vault is the ledger,
  * the same contract findUntranscribed uses.
  */
-export async function syncSupernote(plugin: HandwritingPlugin): Promise<void> {
+export async function syncSupernote(plugin: EinkScribePlugin): Promise<void> {
 	const root = findMirrorRoot(plugin.settings.supernoteRoot);
 	if (!root) {
 		new Notice(
@@ -77,7 +77,7 @@ export async function syncSupernote(plugin: HandwritingPlugin): Promise<void> {
 			} catch (err) {
 				// One unreadable note must not abandon the rest of the sync.
 				failed.push(name);
-				console.error(`[handwriting-transcribe] sync ${name}: ${message(err)}`);
+				console.error(`[eink-scribe] sync ${name}: ${message(err)}`);
 			}
 		}
 	} finally {
@@ -96,13 +96,13 @@ export async function syncSupernote(plugin: HandwritingPlugin): Promise<void> {
  * follows reads the vault's own file list.
  */
 async function importNote(
-plugin: HandwritingPlugin,
+plugin: EinkScribePlugin,
 tool: string,
 notePath: string,
 vaultPath: string,
 ): Promise<void> {
 	const unique = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-	const temp = join(tmpdir(), `handwriting-${unique}.pdf`);
+	const temp = join(tmpdir(), `eink-scribe-${unique}.pdf`);
 	try {
 		await convertNote(tool, notePath, temp);
 		const parent = vaultPath.slice(0, vaultPath.lastIndexOf("/"));

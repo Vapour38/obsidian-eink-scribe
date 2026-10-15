@@ -1,6 +1,6 @@
 {
-	"id": "handwriting-transcribe",
-	"name": "Handwriting Transcribe",
+	"id": "eink-scribe",
+	"name": "E-Ink Scribe",
 	"version": "0.1.0",
 	"minAppVersion": "1.5.0",
 	"description": "Transcribe handwritten notes (images, scans, Supernote PDFs) into structured Markdown using Claude.",

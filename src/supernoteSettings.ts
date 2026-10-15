@@ -16,7 +16,7 @@ import {
 } from "./supernote";
 import { IMPORT_FOLDER } from "./settings";
 import { syncSupernote } from "./sync";
-import type HandwritingPlugin from "./main";
+import type EinkScribePlugin from "./main";
 
 /**
  * The Supernote half of the settings tab. Split out of settings.ts to keep that
@@ -26,7 +26,7 @@ import type HandwritingPlugin from "./main";
 
 export function renderSupernoteSection(
 	containerEl: HTMLElement,
-	plugin: HandwritingPlugin,
+	plugin: EinkScribePlugin,
 	redraw: () => void,
 ): void {
 	new Setting(containerEl).setName("Supernote").setHeading();
@@ -61,7 +61,7 @@ export function renderSupernoteSection(
 		.setName("Folders to import")
 		.setDesc("The model chooses where each transcription goes in the vault.");
 	// The rows below belong to this heading, so it must not close itself off.
-	heading.settingEl.addClass("handwriting-list-heading");
+	heading.settingEl.addClass("eink-scribe-list-heading");
 	renderFolderList(containerEl, plugin, redraw);
 
 	new Setting(containerEl)
@@ -74,7 +74,7 @@ export function renderSupernoteSection(
 
 function renderConverter(
 	containerEl: HTMLElement,
-	plugin: HandwritingPlugin,
+	plugin: EinkScribePlugin,
 	redraw: () => void,
 ): void {
 	// Installing is a Setup step, so this row is only for a path entered by hand.
@@ -129,18 +129,18 @@ export function addInstallButton(setting: Setting, redraw: () => void): void {
  */
 function renderFolderList(
 	containerEl: HTMLElement,
-	plugin: HandwritingPlugin,
+	plugin: EinkScribePlugin,
 	redraw: () => void,
 ): void {
 	const chosen = plugin.settings.importFolders;
 	const root = findMirrorRoot(plugin.settings.supernoteRoot);
 	const available = root ? listSupernoteFolders(root) : [];
 
-	const list = containerEl.createDiv({ cls: "handwriting-folder-list" });
+	const list = containerEl.createDiv({ cls: "eink-scribe-folder-list" });
 
 	if (chosen.length === 0) {
 		list.createDiv({
-			cls: "handwriting-folder-empty",
+			cls: "eink-scribe-folder-empty",
 			text: root
 				? "No folders chosen. Nothing will sync."
 				: "No mirror found, so there are no folders to choose from.",
@@ -148,7 +148,7 @@ function renderFolderList(
 	}
 
 	for (const [index, entry] of chosen.entries()) {
-		const row = list.createDiv({ cls: "handwriting-folder-row" });
+		const row = list.createDiv({ cls: "eink-scribe-folder-row" });
 
 		const dropdown = new DropdownComponent(row);
 		dropdown.addOption("", "(choose a folder…)");
@@ -164,7 +164,7 @@ function renderFolderList(
 			await plugin.saveSettings();
 		});
 
-		const subfolders = row.createDiv({ cls: "handwriting-folder-toggle" });
+		const subfolders = row.createDiv({ cls: "eink-scribe-folder-toggle" });
 		subfolders.createSpan({ text: "Subfolders" });
 		new ToggleComponent(subfolders)
 			.setTooltip("Include this folder's subfolders")
@@ -184,7 +184,7 @@ function renderFolderList(
 			});
 	}
 
-	const footer = list.createDiv({ cls: "handwriting-folder-add" });
+	const footer = list.createDiv({ cls: "eink-scribe-folder-add" });
 	new ExtraButtonComponent(footer).setIcon("plus").setTooltip("Add a folder");
 	footer.createSpan({ text: "Add folder" });
 	footer.addEventListener("click", async () => {

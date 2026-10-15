@@ -3,7 +3,7 @@ import { resolveClaudeBinary } from "./claudeCode";
 import { renderSetup } from "./onboarding";
 import { renderSupernoteSection } from "./supernoteSettings";
 import type { SyncFolder } from "./supernote";
-import type HandwritingPlugin from "./main";
+import type EinkScribePlugin from "./main";
 
 export type Backend = "api" | "claude-code";
 
@@ -22,7 +22,7 @@ export interface LastRun {
 	at: string;
 }
 
-export interface HandwritingSettings {
+export interface EinkScribeSettings {
 	backend: Backend;
 	apiKey: string;
 	claudeCodePath: string;
@@ -41,7 +41,7 @@ export interface HandwritingSettings {
 	lastRun: LastRun | null;
 }
 
-export const DEFAULT_SETTINGS: HandwritingSettings = {
+export const DEFAULT_SETTINGS: EinkScribeSettings = {
 	backend: "api",
 	apiKey: "",
 	claudeCodePath: "",
@@ -73,13 +73,13 @@ const PRESET_MODELS = [
 /** Sentinel dropdown value; never stored as a model ID. */
 const CUSTOM_MODEL = "custom";
 
-export class HandwritingSettingTab extends PluginSettingTab {
-	plugin: HandwritingPlugin;
+export class EinkScribeSettingTab extends PluginSettingTab {
+	plugin: EinkScribePlugin;
 
 	/** UI-only, so it is deliberately not persisted to data.json. */
 	private customModel = false;
 
-	constructor(app: App, plugin: HandwritingPlugin) {
+	constructor(app: App, plugin: EinkScribePlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -220,7 +220,7 @@ export class HandwritingSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Transcription preferences")
 			.setDesc("Sent to the model with every transcription.")
-			.setClass("handwriting-stacked")
+			.setClass("eink-scribe-stacked")
 			.addTextArea((text) => {
 				text.inputEl.rows = 8;
 				text

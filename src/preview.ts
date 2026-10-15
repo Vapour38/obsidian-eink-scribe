@@ -136,16 +136,16 @@ export class PreviewModal extends Modal {
 
 	onOpen(): void {
 		const { contentEl, modalEl } = this;
-		modalEl.addClass("handwriting-preview-modal");
+		modalEl.addClass("eink-scribe-preview-modal");
 		contentEl.empty();
 
 		contentEl.createEl("h2", {
 			text: `Transcription of ${this.sourceFile.name}`,
 		});
 
-		const panes = contentEl.createDiv({ cls: "handwriting-panes" });
-		this.renderSourcePane(panes.createDiv({ cls: "handwriting-source-pane" }));
-		this.notesPane = panes.createDiv({ cls: "handwriting-notes-pane" });
+		const panes = contentEl.createDiv({ cls: "eink-scribe-panes" });
+		this.renderSourcePane(panes.createDiv({ cls: "eink-scribe-source-pane" }));
+		this.notesPane = panes.createDiv({ cls: "eink-scribe-notes-pane" });
 		this.renderNotes();
 
 		this.renderControls(contentEl);
@@ -156,10 +156,10 @@ export class PreviewModal extends Modal {
 		const url = this.app.vault.getResourcePath(this.sourceFile);
 
 		if (this.sourceFile.extension.toLowerCase() === "pdf") {
-			const frame = pane.createEl("iframe", { cls: "handwriting-source-frame" });
+			const frame = pane.createEl("iframe", { cls: "eink-scribe-source-frame" });
 			frame.src = url;
 		} else {
-			const img = pane.createEl("img", { cls: "handwriting-source-image" });
+			const img = pane.createEl("img", { cls: "eink-scribe-source-image" });
 			img.src = url;
 		}
 	}
@@ -171,11 +171,11 @@ export class PreviewModal extends Modal {
 		pane.empty();
 
 		this.groups.forEach((group, index) => {
-			const card = pane.createDiv({ cls: "handwriting-note-card" });
+			const card = pane.createDiv({ cls: "eink-scribe-note-card" });
 			card.toggleClass("is-excluded", !group.include);
 			card.toggleClass("is-unrouted", this.isUnrouted(group));
 
-			const header = card.createDiv({ cls: "handwriting-card-header" });
+			const header = card.createDiv({ cls: "eink-scribe-card-header" });
 
 			const select = header.createEl("input", { type: "checkbox" });
 			select.checked = group.selected;
@@ -195,13 +195,13 @@ export class PreviewModal extends Modal {
 				this.refreshControls();
 			});
 
-			const heading = header.createDiv({ cls: "handwriting-card-heading" });
+			const heading = header.createDiv({ cls: "eink-scribe-card-heading" });
 			heading.createDiv({
-				cls: "handwriting-card-title",
+				cls: "eink-scribe-card-title",
 				text: group.note.title || `Note ${index + 1}`,
 			});
 			heading.createDiv({
-				cls: "handwriting-card-filename",
+				cls: "eink-scribe-card-filename",
 				text:
 					`${group.note.filename}.md` +
 					(group.parts.length > 1 ? ` · merged from ${group.parts.length}` : ""),
@@ -212,7 +212,7 @@ export class PreviewModal extends Modal {
 			}
 
 			const textarea = card.createEl("textarea", {
-				cls: "handwriting-note-body",
+				cls: "eink-scribe-note-body",
 			});
 			textarea.value = group.note.body;
 			textarea.rows = 14;
@@ -224,7 +224,7 @@ export class PreviewModal extends Modal {
 
 	private renderDestination(header: HTMLElement, group: NoteGroup): void {
 		const select = header.createEl("select", {
-			cls: "dropdown handwriting-destination",
+			cls: "dropdown eink-scribe-destination",
 		});
 
 		// Placeholder only exists while the note is unrouted, so a resolved note
@@ -339,7 +339,7 @@ export class PreviewModal extends Modal {
 			);
 
 		this.gateHint = footer.descEl;
-		this.gateHint.addClass("handwriting-gate-hint");
+		this.gateHint.addClass("eink-scribe-gate-hint");
 	}
 
 	/** Only meaningful when routing is configured; otherwise nothing is unrouted. */

@@ -116,7 +116,7 @@ async function main() {
 
 	assert.ok(supernoteToolInstalled(""), `supernote-tool not installed (resolved ${TOOL})`);
 
-	const out = join(tmpdir(), "handwriting-harness.pdf");
+	const out = join(tmpdir(), "eink-scribe-harness.pdf");
 	await convertNote(TOOL, all[0].notePath, out);
 	assert.ok(statSync(out).size > 10000, "PDF too small");
 	console.log("converted:", all[0].notePath, "->", statSync(out).size, "bytes");

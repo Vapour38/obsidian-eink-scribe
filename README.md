@@ -1,8 +1,8 @@
 <div align="center">
 
-# Handwriting Transcribe
+# E-Ink Scribe
 
-**Turn handwritten notes into structured, linked Obsidian notes with Claude.**
+**Turn handwritten notes into structured, linked Obsidian notes with your LLM.**
 
 ![Platform: Obsidian desktop](https://img.shields.io/badge/platform-Obsidian%20desktop-7c3aed?style=flat-square)
 ![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue?style=flat-square)
@@ -13,7 +13,7 @@
 
 ---
 
-## Why Handwriting Transcribe?
+## What is E-Ink Scribe?
 
 Classic OCR is trained on print and fails on cursive. A vision model reads the handwriting and the structure of the page in one pass.
 
@@ -67,8 +67,8 @@ npm install
 npm run build
 ```
 
-1. Copy `main.js`, `manifest.json` and `styles.css` to `<vault>/.obsidian/plugins/handwriting-transcribe/`.
-2. In Obsidian, open **Settings → Community plugins** and enable **Handwriting Transcribe**.
+1. Copy `main.js`, `manifest.json` and `styles.css` to `<vault>/.obsidian/plugins/eink-scribe/`.
+2. In Obsidian, open **Settings → Community plugins** and enable **E-Ink Scribe**.
 3. Open the plugin settings and choose a backend.
 4. For the API backend, enter your API key. For the CLI backend, the plugin finds `claude` automatically.
 
@@ -121,4 +121,4 @@ Obsidian does not reload plugins on change. Run **Reload app without saving** af
 
 ## Licence
 
-MIT. Copyright (c) 2026 Lachlan Dennis. See [LICENSE](LICENSE) for the full text.
+MIT. Copyright (c) 2026. See [LICENSE](LICENSE) for the full text.

@@ -17,7 +17,7 @@ const CONVERT_TIMEOUT_MS = 60 * 1000;
 const INSTALL_TIMEOUT_MS = 5 * 60 * 1000;
 
 /** Where installSupernoteTool puts its venv. */
-const VENV_DIR = join(homedir(), ".handwriting-transcribe", "venv");
+const VENV_DIR = join(homedir(), ".eink-scribe", "venv");
 
 /**
  * The macOS Partner app keeps a full local mirror of the device here. The

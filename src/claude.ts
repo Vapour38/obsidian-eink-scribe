@@ -118,7 +118,7 @@ export async function transcribe(
 	const { apiKey, model, source, vaultTitles, subjectFolders, preferences } = options;
 
 	if (!apiKey) {
-		throw new Error("No API key set. Add one in the Handwriting Transcribe settings.");
+		throw new Error("No API key set. Add one in the E-Ink Scribe settings.");
 	}
 
 	// Stable prefix first, cached; the per-file image or PDF goes after the breakpoint.

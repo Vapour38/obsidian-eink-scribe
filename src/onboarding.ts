@@ -9,7 +9,7 @@ import {
 	supernoteToolInstalled,
 } from "./supernote";
 import { addInstallButton } from "./supernoteSettings";
-import type HandwritingPlugin from "./main";
+import type EinkScribePlugin from "./main";
 
 const POPPLER_COMMAND = "brew install poppler";
 
@@ -25,7 +25,7 @@ const FULL_DISK_ACCESS_PANE =
  */
 export function renderSetup(
 	containerEl: HTMLElement,
-	plugin: HandwritingPlugin,
+	plugin: EinkScribePlugin,
 	redraw: () => void,
 ): boolean {
 	const { settings } = plugin;
